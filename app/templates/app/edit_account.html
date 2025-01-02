@@ -1,0 +1,60 @@
+{% include 'app/nav.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/editaccount.css' %}">
+
+<div class="form-container">
+    <div class="edit-account-container">
+        <form method="post" class="form">
+            <h1 class="title">Edit Account</h1>
+            {% csrf_token %}
+            
+            <!-- Manually render form fields with input class -->
+            <label for="id_first_name">
+                <input required="" placeholder="" type="text" class="input" name="first_name" id="id_first_name" value="{{ form.first_name.value }}">
+                <span>First Name</span>
+            </label>
+            
+            <label for="id_last_name">
+                <input required="" placeholder="" type="text" class="input" name="last_name" id="id_last_name" value="{{ form.last_name.value }}">
+                <span>Last Name</span>
+            </label>
+            
+            <label for="id_email">
+                <input required="" placeholder="" type="email" class="input" name="email" id="id_email" value="{{ form.email.value }}">
+                <span>Email</span>
+            </label>
+            
+            <label for="id_address">
+                <input required="" placeholder="" type="text" class="input" name="address" id="id_address" value="{{ form.address.value }}">
+                <span>Address</span>
+            </label>
+            
+            <label for="id_phone_number">
+                <input required="" placeholder="" type="text" class="input" name="phone_number" id="id_phone_number" value="{{ form.phone_number.value }}">
+                <span>Phone Number</span>
+            </label>
+            
+            <label for="id_birth_date">
+                <input required="" placeholder="" type="date" class="input" name="birth_date" id="id_birth_date" value="{{ form.birth_date.value }}">
+                <span>Birth Date</span>
+            </label>
+            
+            <label for="id_password">
+                <input required="" placeholder="Enter your new password" type="password" class="input" name="password" id="id_password" value="">
+                <span>Password</span>
+            </label>
+
+            <label for="id_confirm_password">
+                <input required="" placeholder="Confirm your new password" type="password" class="input" name="confirm_password" id="id_confirm_password" value="">
+                <span>Confirm Password</span>
+            </label>
+
+            <button type="submit" class="submit">Save Changes</button>
+            <a href="{% url 'account' %}" class="submit cancel">Cancel</a>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

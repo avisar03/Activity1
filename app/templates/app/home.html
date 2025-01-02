@@ -1,0 +1,20 @@
+{% extends 'app/base.html' %}
+{% include 'app/nav.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<div class="home-container">
+    <div class="text-container">
+        <h1>FitLife Academy.</h1>
+        <h4>A place for self improvement</h4>
+    </div>
+    <div class="image-container">
+        <span>put image here</span>
+    </div>
+</div>
+
+
+{% endblock content %}

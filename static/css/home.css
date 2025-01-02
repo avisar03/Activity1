@@ -1,0 +1,17 @@
+.home-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.text-container h1 {
+    font-size: 70px;
+    margin: 0%;
+}
+
+.image-container {
+    width: 500px;
+    height: 500px;
+    background-color: red;
+}
