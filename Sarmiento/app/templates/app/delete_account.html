@@ -1,0 +1,14 @@
+{% include 'app/nav.html' %}
+{% load static %}
+
+{% block content %}
+<div class="delete-account-container">
+    <h1>Delete Account</h1>
+    <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+    <form method="post" action="{% url 'delete_account' object.pk %}">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'account' %}">Cancel</a>
+    </form>
+</div>
+{% endblock content %}

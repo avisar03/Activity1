@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% include 'app/nav.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+
+<div class="home-container">
+    <div class="form-container">
+        <form class="form" method="post" novalidate>
+            {% csrf_token %}
+            <p class="title">Register</p>
+            <p class="message">Signup now and get full access to our Gym.</p>
+            
+            {% for field in form %}
+                <label>
+                    {{ field }}
+                    <span>{{ field.label }}</span>
+                    {% if field.errors %}
+                        <div class="error">{{ field.errors|striptags }}</div>
+                    {% endif %}
+                </label>
+            {% endfor %}
+            
+            <button type="submit" class="submit">Submit</button>
+            <p class="signin">Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
+        </form>
+    </div>
+    <div class="image-container">
+        <span>put image here</span>
+    </div>
+</div>
+{% endblock content %}
