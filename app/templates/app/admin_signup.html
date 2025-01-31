@@ -1,0 +1,34 @@
+{% include 'app/nav.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/admin-signup.css' %}">
+
+<div class="home-container">
+    <div class="form-container">
+        <form method="POST" class="form">
+            {% csrf_token %}
+            <h1 class="title">Admin Signup</h1>
+            <p class="message">Sign up to create an Admin Account.</p>
+            <label>
+                <input required="" placeholder="" type="text" id="username" name="username" class="input" required>
+                <span>Username</span>
+            </label>
+            <label>
+                <input type="password" id="password" name="password" class="input" required>
+                <span>Password</span>
+            </label>
+            <label>
+                <input type="password" id="confirm_password" name="confirm_password" class="input" required>
+                <span>Confirm Password</span>
+            </label>
+            <button type="submit" class="submit">Sign Up</button>
+            <p class="signin">Don't have an account? <a href="{% url 'admin_signup' %}">Sign up here!</a></p>
+        </form>
+    </div>
+    <div class="image-container">
+            <span></span>
+    </div>
+</div>
+
+{% endblock content %}

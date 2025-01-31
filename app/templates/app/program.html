@@ -1,0 +1,126 @@
+{% include 'app/nav.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/program.css' %}">
+
+<div class="container">
+    {% if request.user.is_authenticated and request.user.is_staff %}
+    <div class="action-btn">
+        <button class="btn add-btn" id="openAddModal">Add Category</button>
+        <button class="btn delete-btn" id="openDeleteModal">Detele Category</button>
+    </div>
+    {% endif %}
+    <h1 class="title">Exercise Programs</h1>
+    <div class="category-container">
+        {% for program in exercise_programs %}
+        <div class="category">
+            <!-- Display the image -->
+            {% if program.category_pic %}
+            <a href="{% url 'exercise_program_detail' program.pk %}"><img src="{{ program.category_pic.url }}" alt="{{ program.category }}" style="width: 485px; height: 300px; background-color: red; border-radius: 8px;"></a>
+            {% else %}
+            <!-- Fallback for categories without images -->
+            <img src="{% static 'app/default-category.jpg' %}" alt="Default Image" style="width: 485px; height: 300px; border-radius: 8px;">
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Modal for Adding Category -->
+<div id="addCategoryModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button" id="closeAddModal">&times;</span>
+        <h2>Add New Category</h2>
+        <form method="POST" action="{% url 'add_category' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="label-container">
+                <label for="category_pic">Category Name:</label>
+            </div>
+            <input type="text" name="category_name" placeholder="Enter Category Name" required>
+            <div class="label-container category-img">
+                <label for="category_pic">Upload Category Image:</label>
+            </div>
+            <input type="file" name="category_pic" id="category_pic" accept="image/*">
+            <div class="submit-container">
+                <button type="submit" class="btn submit-btn">Submit</button>
+            </div>
+        </form>
+    <!-- Error Message -->
+    {% if error_message %}
+    <div class="error-message">
+        <p style="color: red;">{{ error_message }}</p>
+    </div>
+    {% endif %}    
+    </div>
+</div>
+
+<!-- Modal for Deleting Category -->
+<div id="deleteCategoryModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button" id="closeDeleteModal">&times;</span>
+        <h2>Delete Category</h2>
+        <form method="POST" action="{% url 'delete_category' %}">
+            {% csrf_token %}
+            <div class="label-container">
+                <label for="category">Select Category:</label>
+            </div>
+            <select name="category" id="category" required>
+                {% for program in exercise_programs %}
+                <option value="{{ program.exercise_program_id }}">{{ program.category }}</option>
+                {% endfor %}
+            </select>
+            <div class="delete-btn-container">
+                <button type="submit" class="btn submit-btn">Delete</button>
+            </div>
+        </form>
+    <!-- Error Message -->
+    {% if error_message %}
+    <div class="error-message">
+        <p style="color: red;">{{ error_message }}</p>
+    </div>
+    {% endif %}   
+    </div>
+</div>
+
+<script>
+    // Add Category Modal
+    const modal = document.getElementById('addCategoryModal');
+    const openModalButton = document.getElementById('openAddModal');
+    const closeModalButton = document.getElementById('closeAddModal');
+
+    openModalButton.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+    });
+
+    closeModalButton.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.classList.add('hidden');
+        }
+    });
+
+    // Delete Category Modal
+    const deleteModal = document.getElementById('deleteCategoryModal');
+    const openDeleteModalButton = document.getElementById('openDeleteModal');
+    const closeDeleteModalButton = document.getElementById('closeDeleteModal');
+
+    openDeleteModalButton.addEventListener('click', () => {
+        deleteModal.classList.remove('hidden');
+    });
+
+    closeDeleteModalButton.addEventListener('click', () => {
+        deleteModal.classList.add('hidden');
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === deleteModal) {
+            deleteModal.classList.add('hidden');
+        }
+    });
+</script>
+
+{% endblock content %}

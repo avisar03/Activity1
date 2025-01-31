@@ -1,0 +1,168 @@
+{% include 'app/nav.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/exercise.css' %}">
+
+{% if request.user.is_authenticated and request.user.is_staff %}
+    <div class="action-btn">
+        <button class="btn add-btn" id="openAddModal">Add Exercise Routine</button>
+        <button class="btn delete-btn" id="openDeleteModal">Delete Exercise Routine</button>
+    </div>
+    {% endif %}
+
+<div class="container">
+    <!-- Display the Category Name -->
+    <div class="category-header">
+        <h1>{{ exercise_program.category }}</h1>
+    </div>
+
+    <!-- List of Exercises -->
+    <div class="exercise-list">
+        <h2>Exercises in this Program:</h2>
+        {% if exercises %}
+        <ul>
+            {% for exercise in exercises %}
+            <li class="exercise-item">
+                <h3>{{ exercise.name }}</h3>
+                <p><strong>Description:</strong> {{ exercise.description }}</p>
+                <p><strong>Calories Burned:</strong> {{ exercise.calories_burned }} kcal</p>
+                <p><strong>Duration:</strong> {{ exercise.duration_minutes }} minutes</p>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No exercises found for this category.</p>
+        {% endif %}
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-button">
+        <a href="{% url 'programs' %}"><button>Back to Categories</button></a>
+    </div>
+</div>
+
+<!-- Add Exercise Routine Modal -->
+<div id="addModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button" id="closeAddModal">&times;</span>
+        <h2>Add Exercise Routine</h2>
+        <form id="addExerciseForm">
+            <div class="label-container">
+            <label for="exerciseName">Exercise Name:</label>
+            </div>
+            <input type="text" id="exerciseName" name="exercise_name" required>
+            <div class="label-container">
+            <label for="exerciseDescription">Description:</label>
+            </div>
+            <textarea id="exerciseDescription" name="description"></textarea>
+            <div class="label-container">
+            <label for="caloriesBurned">Calories Burned:</label>
+            </div>
+            <input type="number" id="caloriesBurned" name="calories_burned" required>
+            <div class="label-container">
+            <label for="duration">Duration (Minutes):</label>
+            </div>
+            <input type="number" id="duration" name="duration_minutes" required>
+
+            <input type="hidden" id="exerciseProgramId" name="exercise_program_id" value="{{ exercise_program.pk }}">
+            <div class="button-container">
+            <button type="submit" class="btn">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Delete Exercise Routine Modal -->
+<div id="deleteModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button" id="closeDeleteModal">&times;</span>
+        <h2>Delete Exercise Routine</h2>
+        <form id="deleteExerciseForm">
+            <div class="label-container">
+            <label for="deleteExerciseSelect">Select Exercise to Delete:</label>
+            </div>
+            <select id="deleteExerciseSelect" name="exercise_id" required>
+                {% for exercise in exercises %}
+                    <option value="{{ exercise.exercise_id }}">{{ exercise.name }}</option>
+                {% endfor %}
+            </select>
+            <div class="button-container">
+            <button type="submit" class="btn">Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Modals
+        const addModal = document.getElementById("addModal");
+        const deleteModal = document.getElementById("deleteModal");
+
+        // Buttons
+        const openAddModalBtn = document.getElementById("openAddModal");
+        const openDeleteModalBtn = document.getElementById("openDeleteModal");
+        const closeAddModalButton = document.getElementById("closeAddModal");
+        const closeDeleteModalButton = document.getElementById("closeDeleteModal");
+
+        // Open Add Modal
+        openAddModalBtn.addEventListener("click", () => {
+            addModal.classList.remove("hidden");
+        });
+
+        closeAddModalButton.addEventListener("click", () => {
+            addModal.classList.add("hidden");
+        });
+
+        // Open Delete Modal
+        openDeleteModalBtn.addEventListener("click", () => {
+            deleteModal.classList.remove("hidden");
+        });
+
+        closeDeleteModalButton.addEventListener("click", () => {
+            deleteModal.classList.add("hidden");
+        });
+
+        // Handle Add Exercise Form Submission
+        document.getElementById("addExerciseForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+
+            fetch("/add-exercise/", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    alert("Exercise added successfully!");
+                    location.reload();
+                } else {
+                    alert("Failed to add exercise.");
+                }
+            });
+        });
+
+        // Handle Delete Exercise Form Submission
+        document.getElementById("deleteExerciseForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const exerciseId = document.getElementById("deleteExerciseSelect").value;
+
+            fetch(`/delete-exercise/${exerciseId}/`, {
+                method: "DELETE",
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    alert("Exercise deleted successfully!");
+                    location.reload();
+                } else {
+                    alert("Failed to delete exercise.");
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock content %}

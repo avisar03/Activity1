@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+        <link rel="stylesheet" href="{% static 'css/about.css' %}">
+
+        <div class="home-container">
+                <div class="text-container">
+                    <h1>About FitLife.</h1>
+                    <h4>Founded in 2018, 
+                        FitLife Academy in Las Piñas City 
+                        is a premier fitness center dedicated 
+                        to helping individuals achieve their health 
+                        and wellness goals. Under the leadership 
+                        of CEO Kent Xaviery C. Sarmiento, 
+                        the gym offers state-of-the-art equipment, 
+                        top-tier amenities, and expert coaching to support all fitness levels. More than just a workout space, FitLife Academy fosters a strong gym community where members stay motivated and empowered.
+
+                        The gym's website enhances the fitness experience with features like a Calorie Calculator and Online Exercise Programs, making it easier for members to track progress and stay active anytime, anywhere. Whether you're lifting weights, joining a class, or engaging with the community, FitLife Academy is the perfect place to elevate your fitness journey.</h4>
+                </div>
+                <div class="image-container">
+                    <img src="{% static 'images/AboutFit.jpg' %}"></img>
+                </div>
+            </div>
+
+        {% endblock content %}  

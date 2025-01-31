@@ -1,0 +1,56 @@
+{% include 'app/nav.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/account.css' %}">
+
+<div class="form-container">
+    <div class="account-container">
+        <h1 class="title">Account Information</h1>
+        {% if account_details %}
+        {% for user in account_details %}
+        <div class="account-details">
+            <p><strong>First Name:</strong> {{ user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Address:</strong> {{ user.address }}</p>
+            <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+            <p><strong>Birth Date:</strong> {{ user.birth_date }}</p>
+            <p><strong>Membership:</strong> 
+                {% for membership in user.membership_set.all %}
+                    {{ membership.type }}
+                {% endfor %}
+            </p>
+        </div>
+        <div class="account-actions flex">
+            <a href="{% url 'edit_account' %}">
+                <button class="submit">Edit</button>
+            </a>
+            <a href="{% url 'delete_account' %}" onclick="return confirm('Are you sure you want to delete your account?');">
+                <button class="submit">Delete</button>
+            </a>
+            <a href="{% url 'logout' %}">
+                <button class="submit">Logout</button>
+            </a>
+        </div>
+        {% endfor %}
+        {% elif request.user.is_authenticated and request.user.is_staff %}
+            <div class="admin-details">
+                <h2>Welcome, Admin</h2>
+                <p><strong>Username:</strong> {{ request.user.username }}</p>
+                <div class="admin-actions">
+                    <div class="admin-site">
+                        <a href="/admin/" class="admin-link">Go to Admin Dashboard</a>
+                        <a href="{% url 'logout' %}">
+                            <button class="submit">Logout</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+        <p>No account details found. <a class="login-link" href="{% url 'login' %}">Login now!</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

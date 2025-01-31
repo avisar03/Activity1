@@ -1,0 +1,32 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/nav.css' %}">
+
+<header id="header" class="header">
+  <div class="nav-logo">
+    <a href="{% url 'home' %}" class="navbrand">FitLife Academy.</a>
+  </div>    
+  <div class="nav-link">
+    <nav class="navbar">
+      <a href="{% url 'home' %}"><ul>Home</ul></a>
+      <a href="{% url 'about' %}"><ul>About Us</ul></a>
+      <a href="{% url 'calorie' %}"><ul>Calorie</ul></a>
+      <a href="{% url 'programs' %}"><ul>Programs</ul></a>   
+      <a href="{% url 'account' %}">
+        <ul>
+          {% if request.session.user_first_name %}
+            Welcome, {{ request.session.user_first_name }}
+          {% elif request.user.is_authenticated and request.user.is_staff %}
+            Welcome, Admin
+          {% else %}
+            Account
+          {% endif %}
+        </ul>
+      </a>
+    </nav>
+  </div>
+</header>
+
+{% block content %}
+
+{% endblock content %}

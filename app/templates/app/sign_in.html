@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% include 'app/nav.html' %}
+{% load static %}
+
+{% block content %}
+ 
+<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+
+<div class="home-container">
+    <div class="form-container">
+        <form method="POST" class="form">
+            {% csrf_token %}
+            <p class="title">Log In</p>
+            <p class="message">Log in now and get full access to our Gym.</p>
+            <div class="admin-link">
+                <a href="{% url 'admin_login' %}">Are you an admin?</a>
+            </div>        
+            <label>
+                <input required="" placeholder="" type="email" class="input" name="email">
+                <span>Email</span>
+            </label>
+            
+            <label>
+                <input required="" placeholder="" type="password" class="input" name="password">
+                <span>Password</span>
+            </label>
+            <button type="submit" class="submit">Submit</button>
+            <p class="signin">Don't have an account yet? <a href="{% url 'signup' %}">Sign up here!</a> </p>
+        </form>
+    </div>
+    <div class="image-container">
+        <img src="{% static 'images/HomeFit.jpg' %}"> </img> </img>
+    </div>
+</div>
+
+{% endblock content %}

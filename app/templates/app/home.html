@@ -1,0 +1,274 @@
+{% extends 'app/base.html' %}
+{% include 'app/nav.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<div class="home-container">
+    <div class="text-container">
+        <h1>FitLife Academy.</h1>
+        <h4>A place for self improvement</h4>
+    </div>
+    <div class="image-container">
+		<img src="{% static 'images/HomeFitL.jpg' %}"> </img>
+    </div>
+</div>
+
+<section class="avail-membership">
+<div class="member-container">
+    <div class="plan">
+		<div class="inner">
+			<span class="pricing">
+				<span>
+					₱0.00 <small>/ m</small>
+				</span>
+			</span>
+			<p class="title">Free Membership</p>
+			<p class="info">This plan is a free trial for 7 Days, and can access our some features.</p>
+			<ul class="features">
+				<li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+					<span><strong>899+</strong> Satisfied Members</span>
+				</li>
+				<li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+					<span><strong>Gain access</strong> to Top Quality Gym Equipments</span>
+				</li>
+				<li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+					<span><strong>Gain access</strong> to our Body Exercise Programs</span>
+				</li>
+			</ul>
+			<div class="action">
+			<a class="button" type="submit" id="openCheckoutModal" data-membership="Basic">
+				Choose this plan!
+			</a>
+			</div>
+		</div>
+	</div>
+    <div class="plan">
+		<div class="inner">
+			<span class="pricing">
+				<span>
+					₱499.00 <small>/ m</small>
+				</span>
+			</span>
+			<p class="title">Premium Membership</p>
+			<p class="info">This plan can now access some of our exclusive features.	</p>
+			<ul class="features">
+				<li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+					<span><strong>599+</strong> Satisfied Members</span>
+				</li>
+				<li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+					<span><strong>Gain access</strong> to Top Quality Gym Equipments</span>
+				</li>
+				<li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+					<span><strong>Gain access</strong> to Our Calorie Food Calculator and Body Exercise Programs</span>
+				</li>
+			</ul>
+			<div class="action">
+			<a class="button" type="submit" id="openCheckoutModal" data-membership="Premium">
+				Choose this plan!
+			</a>
+			</div>
+		</div>
+	</div>
+    <div class="plan">
+		<div class="inner">
+			<span class="pricing">
+				<span>
+					₱1999.00 <small>/ m</small>
+				</span>
+			</span>
+			<p class="title">VIP Membership</p>
+			<p class="info">A VIP Plan that can access all the exclusive features and facilities inside of our Gym.</p>
+			<ul class="features">
+				<li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+					<span><strong>799+</strong> Satisfied Members</span>
+				</li>
+				<li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+					<span><strong>Gain access</strong> to Top Quality Gym Equipments</span>
+				</li>
+				<li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+					<span><strong>Gain access</strong> to Our Calorie Food Calculator and Body Exercise Programs</span>
+				</li>
+				<li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+					<span><strong>Gain access</strong> to Our VIP Room and Sauna</span>
+				</li>
+				<li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+					<span><strong>Gain access</strong> to our VIP room Gym's</span>
+				</li>
+			</ul>
+			<div class="action">
+			<a class="button" type="submit" id="openCheckoutModal" data-membership="VIP">
+				Choose this plan!
+			</a>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+
+<div id="checkoutModal" class="modal hidden">
+    <div class="modal-content">
+        <form class="form" id="membershipForm">
+            <diV class="close-container">
+                <span class="close-button" id="closeCheckoutModal">&times;</span>
+            </div>
+            <div class="separator">
+                <hr class="line">
+                <p>Pay using credit card</p>
+                <hr class="line">
+            </div>
+            <div class="credit-card-info--form">
+                <div class="input_container">
+                    <label for="password_field" class="input_label">Card holder full name</label>
+                    <input id="name_field" class="input_field" type="text" name="input-name" title="Input title" placeholder="Enter your full">
+                </div>
+                <div class="input_container">
+                    <label for="password_field" class="input_label">Card Number</label>
+                    <input id="cardno_field" class="input_field" type="number" name="input-name" title="Input title" placeholder="0000 0000 0000 0000" maxlength="16" pattern="\d{16}" oninput="validateLength(this, 16)" required>
+                </div>
+                <div class="input_container">
+                    <label for="password_field" class="input_label">Expiry Date / CVV</label>
+                    <div class="split">
+                    <input id="date_field" class="input_field" type="date" name="input-name" title="Expiry Date" placeholder="01/23" required>
+                    <input id="cvv_field" class="input_field" type="number" name="cvv" title="CVV" placeholder="CVV" maxlength="3" pattern="\d{3}" oninput="validateLength(this, 3)" required>
+                </div>
+            </div>
+            <p><strong>Selected Plan:</strong> <span id="selectedPlan"></span></p>
+            <input type="hidden" id="membershipType" name="membership_type">
+            <button type="submit" class="purchase--btn">Checkout</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function validateLength(input, maxLength) {
+        if (input.value.length > maxLength) {
+            input.value = input.value.slice(0, maxLength);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const paymentModal = document.getElementById("checkoutModal");
+    const closePaymentModal = document.getElementById("closeCheckoutModal");
+    const membershipForm = document.getElementById("membershipForm");
+    const selectedPlanText = document.getElementById("selectedPlan");
+    const membershipTypeInput = document.getElementById("membershipType");
+
+    // Open modal and set membership type
+    document.querySelectorAll("#openCheckoutModal").forEach(button => {
+        button.addEventListener("click", function () {
+            const membershipType = this.getAttribute("data-membership");
+            selectedPlanText.textContent = membershipType;  // Display selected plan
+            membershipTypeInput.value = membershipType;  // Store membership type in form
+            paymentModal.classList.remove("hidden");
+        });
+    });
+
+    // Close modal
+    closePaymentModal.addEventListener("click", () => {
+        paymentModal.classList.add("hidden");
+    });
+
+    // Handle checkout
+    membershipForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const membershipType = membershipTypeInput.value;
+
+        fetch("/update-membership/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCSRFToken()
+            },
+            body: JSON.stringify({ membership_type: membershipType }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Response:", data);
+            if (data.status === "success") {
+                alert("Membership updated successfully!");
+                window.location.href = "/account/";  // Redirect to account page
+            } else {
+                alert("Failed to update membership: " + data.message);
+            }
+        })
+        .catch(error => console.error("Error updating membership:", error));
+    });
+
+    // Function to get CSRF token
+    function getCSRFToken() {
+        return document.cookie.split("; ")
+            .find(row => row.startsWith("csrftoken="))
+            ?.split("=")[1];
+    }
+});
+</script>
+{% endblock content %}
